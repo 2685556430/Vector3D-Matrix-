@@ -1,0 +1,5 @@
+﻿  test.cpp
+d:\gcc\c语言专用\geometry\geometry\matrix.h(7): warning C4005: “ERROR”: 宏重定义
+  c:\program files (x86)\windows kits\8.1\include\um\wingdi.h(114): note: 参见“ERROR”的前一个定义
+  Geometry.vcxproj -> D:\gcc\C语言专用\Geometry\x64\Debug\Geometry.exe
+  Geometry.vcxproj -> D:\gcc\C语言专用\Geometry\x64\Debug\Geometry.pdb (Full PDB)
