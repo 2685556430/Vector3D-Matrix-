@@ -1,57 +1,57 @@
-#include<iostream>
-#include<vector>
-#include<graphics.h>
-#include<stdlib.h>
-#include<time.h>
-#include"Matrix.h"
-#include"Vector3D.h"
+#include <iostream>
+#include <vector>
+#include <conio.h>
+#include <graphics.h>
+#include <stdlib.h>
+#include <Vector3D.h>
 using namespace std;
-
-int main() {
-	{
-	srand((unsigned int)time(NULL));
-	Mat a(5, 5), b = Mat(3, 4);
-	double arr[25], arr1[12] = { 2,1,1,1,6,2,1,-1,-2,2,1,7 };
-	for (int i = 0; i < 25; i++) {//随机生成一个 10*10 的矩阵
-		arr[i] = -rand() % 5;
-	}
-	a = arr;
-	b = arr1;
-	cout << "a矩阵：\n";
-	a.Show();
-	cout << "a矩阵行列式的值: " << a.det() << '\n';
-	cout << "a矩阵的逆: \n";
-	a.Inv();
-	cout << "检验A*A-1 = E：\n";
-	(a.Inv()*a).Show();
-	cout << '\n';
-	cout << "b矩阵的解(b是由方程组构成的矩阵)：\n";
-	Mat x;
-	b.Solve(x);
-	x.Show();
-	cout << '\n';
-	cout << "b的转置：\n";
-	b.T().Show();
-	cout << '\n';
-	Mat p(2, 2);
-	cout << "请输入一个2*2的矩阵：\n";
-	cin >> p;
-	cout << p;
+using namespace ddwl;
+vector<Vector3D> V;									//顶点集			
+void LINE(Vector3D &sp, Vector3D &ep) {				//方便画线
+	line(sp.x, sp.y, ep.x, ep.y);
 }
-	cout << "**********\n";
-	Mat a(3, 3), t;
-	double arr[9];
-	for (int i = 0; i < 9; i++) {
-		arr[i] = rand() % 5;
+void initDrawStyle() {//初始化绘画风格
+	setlinecolor(RGB(120, 150, 255));
+	setlinestyle(PS_SOLID, 4);
+}
+void initSet() {//初始化点集
+	/*一个棱锥*/
+	{
+		V.push_back({ 500,300,100 });
+		V.push_back({ 400,400,0 });
+		V.push_back({ 400,400,200 });
+		V.push_back({ 600,400,200 });
+		V.push_back({ 600,400,0 });
+		V.push_back({ 500,500,100 });
 	}
-	a = Mat(3, 3, arr);
-	t = a;
-	cout << a << '\n';
-	int n = 30;
-	t.Normalizing(3, 3);//将t转为n*n的单位矩阵
-	t = a.matPow(n);	//求矩阵的n次幂
-	cout << a << '\n';
-	cout << t << '\n';
+
+}
+void drawGraph() {				//绘图
+	int sz = V.size();
+	while (1) {
+		for (int i = 0; i < sz; i++) {
+			V[i].RotateByVector(0.03, Vector3D(2, 1, 0));//绕着窗口主对角线旋转
+		}
+		BeginBatchDraw();
+		for (int i = 1; i < 5; i++) {
+			LINE(V[0], V[i]);
+			LINE(V[5], V[i]);
+		}
+		LINE(V[1], V[2]);
+		LINE(V[1], V[4]);
+		LINE(V[3], V[4]);
+		LINE(V[2], V[3]);
+		EndBatchDraw();
+		cleardevice();
+	}
+}
+int main() {
+	/*绘制一个绕轴旋转的物体*/
+	initgraph(1920, 1080);
+	initDrawStyle();
+	initSet();
+	drawGraph();
+	_getch();
 	system("pause");
 	return 0;
 }

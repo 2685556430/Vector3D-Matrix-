@@ -1,5 +1,5 @@
 ﻿  test.cpp
-d:\gcc\c语言专用\geometry\geometry\matrix.h(7): warning C4005: “ERROR”: 宏重定义
-  c:\program files (x86)\windows kits\8.1\include\um\wingdi.h(114): note: 参见“ERROR”的前一个定义
+d:\gcc\c语言专用\geometry\geometry\test.cpp(11): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+d:\gcc\c语言专用\geometry\geometry\test.cpp(30): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   Geometry.vcxproj -> D:\gcc\C语言专用\Geometry\x64\Debug\Geometry.exe
   Geometry.vcxproj -> D:\gcc\C语言专用\Geometry\x64\Debug\Geometry.pdb (Full PDB)
